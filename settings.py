@@ -3,7 +3,7 @@ import os
 
 # We want to seamlessy run our API both locally and on Heroku. If running on
 # Heroku, sensible DB connection settings are stored in environment variables.
-MONGO_URI = os.environ.get('MONGODB_URI', 'mongodb://root:22oct1997@157.245.0.119:27017/grivience')
+MONGO_URI = os.environ.get('MONGODB_URI', 'mongodb://root:22oct1997@157.245.0.119:27017/grievance')
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide
@@ -28,86 +28,47 @@ PAGINATION_DEFAULT = 200
 
 MONGO_QUERY_BLACKLIST = ['$where']
 
-grievance = {
+parent = {
 
-'item_title': 'grievance',
+'item_title': 'parent',
 
 
-        'grievance_id': {
+        'complaint_id': {
             'type': 'number',
             'required': True,
             'unique': True,
 
         },
-        'user_id': {
+        'image': {
             'type': 'string',
             'required':True,
         },
-        'image_link': {
-            'type': 'string',
-        },
-        'grievance_type': {
+        'issue_date': {
             'type': 'string',
             'required':True,
         },
-        'area': {
+        'user': {
             'type': 'string',
             'required':True,
         },
-        'latitude': {
+        'issue_type': {
             'type': 'string',
+            'required':True,
         },
-        'longitude': {
+        'description': {
             'type': 'string',
+            'maxlength': 10000,
+            'required':True,
         },
-<<<<<<< HEAD
+        'location': {
+            'type': 'string',
+            'maxlength': 1000,
+            'required':True,
+        },
 
-=======
-        'assigned_authority': {
-            'type': 'string',
-        },
-        'assigned_date': {
-            'type': 'string',
-        },
-        'status': {
-            'type': 'boolean',
-        },
-        'timestamp': {
-            'type': 'boolean',
-        },
->>>>>>> e1db298c3ab08e3ead3e6954ea85be45a6517e80
 
 }
 
-users = {
-
-'item_title': 'users',
-
-
-        'user_id': {
-            'type': 'number',
-            'required': True,
-            'unique': True,
-        },
-        'goverment_id':{
-            'type':'string',
-        },
-        'user_name':{
-            'type':'string',
-        },
-        'user_email':{
-            'type':'string',
-        },
-        'user_password':{
-            'type':'string',
-        },
-        'user_otp':{
-            'type':'string',
-        },
-        'user_points':{
-            'type':'string',
-        },
-}
 
 # The DOMAIN dict explains which resources will be available and how they will
 # be accessible to the API consumer.
