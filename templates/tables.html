@@ -69,60 +69,72 @@
 
 
 </div> -->
+
+
       <div class="content">
         <div class="row">
           <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <div class="row container-fluid mx-0">
-                  <div class="col-md-4">
-                    <div class="dropdown">
-                      <button class="btn btn-secondary btn-block dropdown-toggle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span id="result"> Batch</span>
-                      </button>
-                      <div class="dropdown-menu" id="batch" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" onclick="reply_click(this.innerHTML)" id="1" href="#">2016</a>
-                        <a class="dropdown-item" onclick="reply_click(this.innerHTML)" id="2" href="#">2017</a>
-                        <a class="dropdown-item" onclick="reply_click(this.innerHTML)" href="#">2018</a>
-                        <script type="text/javascript">
-                        function reply_click(content)
-                        {
-                            content="<span class='text-primary pr-2'>"+content+"</span>"
-                            document.getElementById("result").innerHTML="Batch: "+content;
-                        }
-                        </script>
-                      </div>
+            <div class="">
+              <div class="d-flex flex-row-reverse" align="right">
+                <div class="p-2">
+                  <div class="dropdown">
+                    <button class="btn btn-link dropdown-toggle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span id="result"> Year</span>
+                    </button>
+                    <div class="dropdown-menu" id="batch" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" onclick="reply_click(this.innerHTML)" id="1" href="#">2016</a>
+                      <a class="dropdown-item" onclick="reply_click(this.innerHTML)" id="2" href="#">2017</a>
+                      <a class="dropdown-item" onclick="reply_click(this.innerHTML)" href="#">2018</a>
+                      <a class="dropdown-item" onclick="reply_click(this.innerHTML)" href="#">2019</a>
+                      <a class="dropdown-item" onclick="reply_click(this.innerHTML)" href="#">2020</a>
+
+                      <script type="text/javascript">
+                      function reply_click(content)
+                      {
+                          content="<span class='text-primary pr-2'>"+content+"</span>"
+                          document.getElementById("result").innerHTML="Year: "+content;
+                      }
+                      </script>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="dropdown">
-                      <button class="btn btn-secondary btn-block dropdown-toggle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span id="supr"> Supervisor</span>
-                      </button>
-                      <div class="dropdown-menu" id="batch" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" onclick="sup(this.innerHTML)" id="1" href="#">Sambhaji sarode</a>
-                        <a class="dropdown-item" onclick="sup(this.innerHTML)" id="2" href="#">Nagesh Jadhav</a>
-                        <a class="dropdown-item" onclick="sup(this.innerHTML)" href="#">Nitesh Patil</a>
-                      </div>
+                </div>
+                <div class="p-2">
+                  <div class="dropdown">
+                    <button class="btn btn-link btn-block dropdown-toggle"  type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span id="supr"> Type</span>
+                    </button>
+                    <div class="dropdown-menu" id="batch" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" onclick="sup(this.innerHTML)" id="1" href="#">Garbage</a>
+                      <a class="dropdown-item" onclick="sup(this.innerHTML)" id="2" href="#">Pothole</a>
+                      <a class="dropdown-item" onclick="sup(this.innerHTML)" href="#">Accident</a>
                     </div>
+                    <script type="text/javascript">
+                    function dept(content)
+                    {
+
+                        content="<span class='text-primary pr-2'>"+content+"</span>"
+                        document.getElementById("dep").innerHTML=content;
+                    }
+                    </script>
                   </div>
-                  <div class="col-md-4">
-                    <div class="dropdown">
-                      <button class="btn btn-secondary btn-block dropdown-toggle" type="button" id="dep" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Department
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Engineering</a>
-                        <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Bio technology</a>
-                        <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Film and Television</a>
-                        <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Broadcast and Journalism</a>
-                        <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Food technology</a>
-                        <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Marine Engineering</a>
-                      </div>
+                </div>
+                <div class="p-2">
+                  <div class="dropdown">
+                    <button class="btn btn-link dropdown-toggle" type="button" id="dep" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Department
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Engineering</a>
+                      <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Bio technology</a>
+                      <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Film and Television</a>
+                      <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Broadcast and Journalism</a>
+                      <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Food technology</a>
+                      <a class="dropdown-item" onclick="dept(this.innerHTML)" href="#">Marine Engineering</a>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table" style="width: 200%;">
@@ -229,18 +241,13 @@ function closeimg(){
 
 
 
-    function dept(content)
-    {
 
-        content="<span class='text-primary pr-2'>"+content+"</span>"
-        document.getElementById("dep").innerHTML="Department: "+content;
-    }
 
     function sup(content)
     {
 
         content="<span class='text-primary pr-2'>"+content+"</span>"
-        document.getElementById("supr").innerHTML="Supervisor : "+content;
+        document.getElementById("supr").innerHTML="Type : "+content;
     }
   </script>
   {% include 'script_vagera.html' %}

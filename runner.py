@@ -28,11 +28,12 @@ app.config['SECRET_KEY'] = '5234124584324'
 
 headers = {'Authorization': 'Basic cm9vdDoyMm9jdDE5OTc=', 'Content-Type':'application/json'}
 
-app.config['MONGO_HOST'] = '165.22.100.196'
+app.config['MONGO_HOST'] = '157.245.0.119'
 app.config['MONGO_PORT'] = '27017'
-app.config['MONGO_DBNAME'] = 'nibodh'
+app.config['MONGO_DBNAME'] = 'grievance'
 app.config['MONGO_USERNAME'] = 'root'
-app.config['MONGO_PASSWORD'] = 'root@123'
+app.config['MONGO_PASSWORD'] = '22oct1997'
+
 
 UPLOAD_FOLDER = "./static/uploads/"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
