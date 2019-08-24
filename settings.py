@@ -28,51 +28,88 @@ PAGINATION_DEFAULT = 200
 
 MONGO_QUERY_BLACKLIST = ['$where']
 
-parent = {
+grievance = {
 
-'item_title': 'parent',
+'item_title': 'grievance',
 
 
-        'complaint_id': {
+        'grievance_id': {
             'type': 'number',
             'required': True,
             'unique': True,
 
         },
-        'image': {
+        'user_id': {
             'type': 'string',
             'required':True,
         },
-        'issue_date': {
+        'image_link': {
+            'type': 'string',
+        },
+        'grievance_type': {
             'type': 'string',
             'required':True,
         },
-        'user': {
+        'area': {
             'type': 'string',
             'required':True,
         },
-        'issue_type': {
+        'latitude': {
             'type': 'string',
-            'required':True,
         },
-        'description': {
+        'longitude': {
             'type': 'string',
-            'maxlength': 10000,
-            'required':True,
         },
-        'location': {
+        'assigned_authority': {
             'type': 'string',
-            'maxlength': 1000,
-            'required':True,
+        },
+        'assigned_date': {
+            'type': 'string',
+        },
+        'status': {
+            'type': 'boolean',
+        },
+        'timestamp': {
+            'type': 'boolean',
         },
 
+}
 
+grievance_users = {
+
+'item_title': 'grievance_users',
+
+
+        'user_id': {
+            'type': 'number',
+            'required': True,
+            'unique': True,
+        },
+        'goverment_id':{
+            'type':'string',
+        },
+        'user_name':{
+            'type':'string',
+        },
+        'user_email':{
+            'type':'string',
+        },
+        'user_password':{
+            'type':'string',
+        },
+        'user_otp':{
+            'type':'string',
+        },
+        'user_points':{
+            'type':'string',
+        },
 }
 
 
 # The DOMAIN dict explains which resources will be available and how they will
 # be accessible to the API consumer.
 DOMAIN = {
-    'parent': parent,#5
+    'grievance': grievance,
+    'grievance_users':grievance_users
 
 }
