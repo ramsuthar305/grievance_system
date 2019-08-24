@@ -1,0 +1,367 @@
+{% load static from staticfiles %} <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Page Content</title>
+  {% include 'links.html' %}
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="white" data-active-color="danger">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+      <div class="logo">
+        <a href="#" class="simple-text logo-mini">
+          <div class="logo-image-small">
+            <img src="{% static 'assets/img/logo-small.png'%}">
+          </div>
+        </a>
+        <a href="#" class="simple-text logo-normal">
+          MIT Research and Consultancy
+          <!-- <div class="logo-image-big">
+            <img src="{% static 'assets/img/logo-big.png">'%}
+          </div> -->
+        </a>
+      </div>
+      {% include 'adminSidebar.html' %}
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" id="page_name" href="#pablo">Pages</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link btn-magnify" href="#pablo">
+                  <i class="nc-icon nc-layout-11"></i>
+                  <p>
+                    Admin
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn-magnify" data-toggle="modal" data-target="#notificationmodal" >
+                  <i class="mdi mdi-bell" style="font-size:24px;"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <!-- <div class="panel-header panel-header-lg">
+
+  <canvas id="bigDashboardChart"></canvas>
+
+
+</div> -->
+      <div class="content container">
+        <div class="row container-fluid mx-0">
+          <div class="col-md-2 col-sm-4">
+            <a href="#news" class="btn btn-dark btn-round btn-block">Latest news</a>
+          </div>
+          <div class="col-md-2 col-sm-4">
+            <a href="#edit_resources" class="btn btn-dark btn-round btn-block">Edit Resources</a>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <a href="#edit_resources" class="btn btn-dark btn-round btn-block">Add/Remove Resources</a>
+          </div>
+          <div class="col-md-3 col-sm-4">
+            <a href="#add_ach" class="btn btn-dark btn-round btn-block">Add/Remove Achievement</a>
+          </div>
+          <div class="col-md-2 col-sm-4">
+            <a href="#edit_ach" class="btn btn-dark btn-round btn-block">Edit Achievement</a>
+          </div>
+        </div>
+    <hr>
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header" id="news">
+          <h5 class="card-title">Edit latest News</h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row border rounded container-fluid mx-0 pb-1">
+              <div class="col-md-12 px-1 pt-1">
+                <div class="form-group">
+                  <label class="text-left">Latest News Heading</label>
+                  <input type="text" class="form-control"placeholder="Company" "Type your heading">
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>News Content</label>
+                      <textarea class="form-control textarea">type in your content</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                      <input type="file" name="pic" accept="image/*">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary btn-round btn-block">Update News</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header" id="edit_resources">
+          <h5 class="card-title">Edit Publication/resources</h5>
+        </div>
+        <div class="card-body">
+          
+            <div class="row border rounded container-fluid mx-0 pb-1">
+              <div class="col-md-12 px-1 pt-1">
+
+                <div class="row pt-2">
+                  <div class="col-md-4 pl-3 form-group">
+                    <form method="POST">
+                    <input id="search_text" type="text" class="form-control" placeholder="Publication/resource title">
+                  </form>
+                  </div>
+                  <div class="col-md-2 form-group">
+                    <button id="search" class="btn btn-primary btn-round btn-block mt-0 ">Search</button>
+                  </div>
+                </div>
+                <form method="POST" action="/edit_pub/" enctype="multipart/form-data" >
+                  {% csrf_token %}
+                <div class="form-group">
+                  <label class="text-left">Publication/resource title</label>
+                  <input type="text" id="resource_title" name='title' class="form-control"placeholder="Company" >Type your heading>
+                </div>
+                <div class="form-group">
+                  <label class="text-left">Publication/resource type</label>
+                  <div class="dropdown">
+                    <button id="rr" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Resource type
+                    </button>
+                    <div class="dropdown-menu border pl-3 ml-0 mr-2 dropdownDiv" aria-labelledby="resourceType">
+                      <a class="dropdown-item btn-light" onclick="dept(this.innerHTML)" >Book</a>
+                      <a class="dropdown-item btn-light" onclick="dept(this.innerHTML)" >Journal</a>
+                      <a class="dropdown-item btn-light" onclick="dept(this.innerHTML)" >Paper</a>
+                      <a class="dropdown-item btn-light" onclick="dept(this.innerHTML)" >video</a>
+                      <a class="dropdown-item btn-light" onclick="dept(this.innerHTML)" >Link</a>
+                      <input type="text" class="form-control border-bottom ff-serif font-weight-normal text-black card-heading mt-0 mb-3" style="display: none;" name='resourceType' id="rt" placeholder="Enter Title of your resource">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Publication/resource description</label>
+                      <textarea id="resource_description" name='description' class="form-control textarea">Description</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <label class="text-left">Upload image</label><br>
+                    <input type="file" name="myfile" accept="image/*">
+                  </div>
+                  <div class="col-md-12 mt-3">
+                      <h6>Publication/ resource type</h6>
+                  </div>
+                </div>
+                <div class="row pt-2">
+                  <div class=" col-md-4 ml-auto mr-auto">
+                    <button type="submit" name="Signup1" value="Submit" class="btn btn-primary btn-round btn-block">Edit Publication/resource</button>
+                  </div>
+                  <div class=" col-md-4 ml-auto mr-auto">
+                    <button type="submit" name="Signup2" value="Submit" class="btn btn-success btn-round btn-block">Add Publication/resource</button>
+                  </div>
+                  <div class=" col-md-4 ml-auto mr-auto">
+                    <button type="submit" name="Signup3" value="Submit" class="btn btn-danger btn-round btn-block">Remove Publication/resource</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+       </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="card card-user">
+        <div class="card-header" id="add_ach">
+          <h5 class="card-title">Add Achievement</h5>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="/some/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row border rounded container-fluid mx-0 pb-1">
+              <div class="col-md-12 px-1 pt-1">
+                <div class="form-group">
+                  <label class="text-left">Achievement heading</label>
+                  <input type="text" name="heading" class="form-control"placeholder="Company" value="Type your heading">
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Achievement description</label>
+                      <textarea name="description" class="form-control textarea">Description</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+
+                      <input type="file" name="path" accept="image/*">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 ml-auto mr-auto">
+                    <button type="submit" name="Signup6" value="Submit"  class="btn btn-primary btn-round btn-block">Add achievement</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card-header">
+          <h5 class="card-title" id="edit_ach">Edit Achievement</h5>
+        </div>
+        <div class="card-body">
+          
+            <div class="row border rounded container-fluid mx-0 pb-1">
+              <div class="col-md-12 px-1 pt-1">
+
+              <div class="row pt-2">
+                
+                  <div class="col-md-4 pl-3 form-group">
+                    <form method="POST">
+                    <input type="text" id="search_text1" class="form-control"placeholder="Achievement title">
+                    </form>
+                  </div>
+                   
+                  <div class="col-md-2 form-group">
+                 
+                    <button type="submit" id="search_1" class="btn btn-primary btn-round btn-block mt-0 ">Search</button>
+                  </div>
+                </div>
+                <form method="POST" action="/edit_ach/" >
+                   {% csrf_token %}
+                <div class="form-group">
+                  <label class="text-left">Achievement heading</label>
+                  <input type="text" id="heading_achievement" name="heading1" class="form-control"placeholder="Company" "Type your heading">
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Achievement description</label>
+                      <textarea id="description_achievement" name="description1" class="form-control textarea">Description</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                      <input type="file" id="pic_achievement" name="pic1" accept="image/*">
+                  </div>
+                </div>
+                <div class="row pt-2">
+                  <div class=" col-md-6 col-sm-6 ml-auto mr-auto">
+                    <button type="submit" name="Signup4" value="Submit" class="btn btn-primary btn-round btn-block">edit achievement</button>
+                  </div>
+                  <div class=" col-md-6 col-sm-6 ml-auto mr-auto">
+                    <button type="submit" name="Signup5" value="Submit" class="btn btn-danger btn-round btn-block">Remove achievement</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+
+    $('#search').click(function() {
+
+      
+   
+    $.ajax({
+        type: "GET",
+        url: "/search1/",
+        data: {
+              
+            'search_text' : $('#search_text').val(),
+            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+        },
+        success: function(y){
+
+          var x=JSON.parse(y);
+         
+          
+          var j=0;
+          var t=""
+          $('#resource_title').val(x[0].fields.title);
+          $('#resource_description').val(x[0].fields.description);
+          
+        }
+    })
+});
+</script>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+
+    $('#search_1').click(function() {
+
+      
+   
+    $.ajax({
+        type: "GET",
+        url: "/search2/",
+        data: {
+              
+            'search_text1' : $('#search_text1').val(),
+            'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+        },
+        success: function(y){
+
+          var x=JSON.parse(y);
+         
+          
+          var j=0;
+          var t=""
+          $('#heading_achievement').val(x[0].fields.heading1);
+          $('#description_achievement').val(x[0].fields.description1);
+          $('#pic_achievement').val(x[0].fields.pic1);
+          
+        }
+    })
+});
+    </script>
+    <script type="text/javascript">
+      function dept(contents)
+      {
+          $('#rr').html(contents);
+           document.getElementById("rt").value=contents;
+           alert($('#rt').val());
+          
+      }
+    </script>
+
+  {% include 'script_vagera.html' %}
+  {% include 'notification_modal.html' %}
+</body>
+
+</html>
