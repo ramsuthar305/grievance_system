@@ -3,7 +3,7 @@ import os
 
 # We want to seamlessy run our API both locally and on Heroku. If running on
 # Heroku, sensible DB connection settings are stored in environment variables.
-MONGO_URI = os.environ.get('MONGODB_URI', 'mongodb://root:22oct1997@157.245.0.119:27017/grievance')
+MONGO_URI = os.environ.get('MONGODB_URI', 'mongodb://root:22oct1997@165.22.100.196:27017/nibodh')
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide

@@ -14,6 +14,7 @@ import smtplib
 import math
 import smtplib
 from werkzeug import secure_filename
+import matplotlib.pyplot as plt
 
 port = 5000
 host = '0.0.0.0'
@@ -28,9 +29,9 @@ app.config['SECRET_KEY'] = '5234124584324'
 
 headers = {'Authorization': 'Basic cm9vdDoyMm9jdDE5OTc=', 'Content-Type':'application/json'}
 
-app.config['MONGO_HOST'] = '157.245.0.119'
+app.config['MONGO_HOST'] = '165.22.100.196'
 app.config['MONGO_PORT'] = '27017'
-app.config['MONGO_DBNAME'] = 'grievance'
+app.config['MONGO_DBNAME'] = 'nibodh'
 app.config['MONGO_USERNAME'] = 'root'
 app.config['MONGO_PASSWORD'] = '22oct1997'
 
@@ -44,15 +45,39 @@ def upload():
 @app.route('/uploader', methods=['GET', 'POST'])
 def uploader():
     if request.method == 'POST':
+        db = app.data.driver.db.client['nibodh']
+        db.grievance
         print('\n\n\n\nbruuuhh in \n\n\n\n')
         f = request.files['file']
         print('saved$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4')
         f.save(secure_filename(f.filename))
-        return f.filename
+
 
 @app.route('/records')
 def records():
     return render_template('tables.html')
+
+
+@app.route('/bar')
+def bar():
+    pincode=[11,12,11,13,15,11,16,17]
+    tmp=set(pincode)
+    count=[]
+    print(tmp)
+    for i in tmp:
+    print(pincode.count(i))
+    count.append(pincode.count(i))
+    tick_label = ['one', 'two', 'three', 'four', 'five','six']
+    print(count)
+    pincode=list(tmp)
+    print(pincode)
+    plt.bar(pincode,count, tick_label = tick_label,width = 0.8, color = ['red', 'green'])
+    plt.xlabel('Problems')
+    plt.ylabel('Area')
+    plt.title('Pincode')
+    #plt.savefig('/graphs'+str(datetime.now())+'.png')
+    return 'hii'
+
 
 @app.route("/smd")
 def index():
