@@ -54,7 +54,7 @@
                            <a class="nav-link btn-magnify" href="#pablo">
                               <i class="nc-icon nc-layout-11"></i>
                               <p>
-                                 Admin {{ laude }}
+                                 Admin
                               </p>
                            </a>
                         </li>
@@ -75,14 +75,17 @@
                   <div class="container-fluid">
                     <div
                      <div class="row">
+
+                       {% for i in all %}
+
                         <div class="col-6 mt-3">
                            <div class="card">
                               <div class="card-horizontal">
-                                 <div class="img-square-wrapper col-md-5">
-                                    <img class="" src="https://www.ynetnews.com/PicServer5/2018/03/22/8424591/84245900100792640360no.jpg" alt="Resource image">
+                                 <div class="img-square-wrapper">
+                                    <img class="" src="data:image/jpeg;base64, {{i['image_link']}}" style="height:150px;;"alt="Resource image">
                                  </div>
                                  <div class="card-body">
-                                    <p class="text-uppercase text-primary">mg road bus stop</p>
+                                    <p class="text-uppercase text-primary">{{ i.area }}</p>
                                     <p class="card-text text-justify" style="font-size:13px;">There is lot of garbage near mg road bus stop, there's no dustbin seems that it hasn't been cleaned since days.</p>
                                     <div class="row ml-1">
                                       <div class="alert alert-danger col-md-4 mr-4 py-2 text-center" role="alert">
@@ -90,9 +93,9 @@
                                       </div>
                                       <div class="col-md-6 ml-4 px-0 my-auto " role="alert">
                                         <div class="col-md-12" style="text-align:left">
-                                          <small class="text-uppercase text-muted text-left">assigned to</small>
+                                          <small class="text-uppercase text-muted text-left">{{ i.assigned_authority}}</small>
                                         </div>
-                                        <p><span class="mdi mdi-account"></span> Akshay Yewale</p>
+                                        <p><span class="mdi mdi-account"></span> {{ i.user_id }}</p>
                                       </div>
                                     </div>
 
@@ -102,7 +105,7 @@
 
                                  <div class="row ml-1">
                                       <div class="col-md-4 mr-4 py-0 text-center" role="alert">
-                                        <p class="text-muted"><span class="mdi mdi-calendar"></span> issued on 22 July 2019</p>
+                                        <p class="text-muted"><span class="mdi mdi-calendar"></span> issued on {{ i.assigned_date }}</p>
                                       </div>
                                       <div class="col-md-6 ml-4 my-auto text-center" role="alert">
                                         <p><span class="mdi mdi-format-list-bulleted-type"> </span> <strong>Type: </strong> Garbage</p>
@@ -111,7 +114,8 @@
                               </div>
                            </div>
                         </div>
-                        
+                        {% endfor %}
+
                      </div>
 
                   </div>

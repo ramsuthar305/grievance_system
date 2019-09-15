@@ -67,10 +67,10 @@ grievance = {
             'type': 'string',
         },
         'status': {
-            'type': 'boolean',
+            'type': 'string',
         },
         'timestamp': {
-            'type': 'boolean',
+            'type': 'string',
         },
 
 }
